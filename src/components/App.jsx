@@ -20,12 +20,10 @@ export class App extends Component {
     return (
       <div
         style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gridGap: '16px',
+          paddingBottom: '24px',
         }}
       >
         <Searchbar onSubmit={this.handelFormSubmit} />

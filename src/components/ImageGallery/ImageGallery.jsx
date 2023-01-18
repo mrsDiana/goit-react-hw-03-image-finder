@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ImageGalleryItem } from './ImageGalleryItem';
 import { Loader } from 'components/Loader/Loader';
 import { toast } from 'react-toastify';
+import { ImageGallery as Gallery } from './ImageGallery.styled';
 
 export default class ImageGallery extends Component {
   state = {
@@ -27,7 +28,7 @@ export default class ImageGallery extends Component {
       <div>
         {this.state.loading && <Loader />}
         {this.state.images.length > 0 && (
-          <ul className="gallery">
+          <Gallery>
             {this.state.images.map(image => {
               return (
                 <ImageGalleryItem
@@ -37,7 +38,7 @@ export default class ImageGallery extends Component {
                 />
               );
             })}
-          </ul>
+          </Gallery>
         )}
       </div>
     );

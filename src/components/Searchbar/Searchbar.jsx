@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import {
+  Searchbar as Search,
+  SearchForm,
+  SearchFormButton,
+  SearchFormButtonLabel,
+  SearchFormInput,
+} from './Searchbar.styled';
 
 export default class Searchbar extends Component {
   state = {
@@ -19,14 +26,13 @@ export default class Searchbar extends Component {
   };
   render() {
     return (
-      <header className="searchbar">
-        <form onSubmit={this.handelSubmit} className="form">
-          <button type="submit" className="button">
-            <span className="button-label">Search</span>
-          </button>
+      <Search>
+        <SearchForm onSubmit={this.handelSubmit}>
+          <SearchFormButton type="submit">
+            <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+          </SearchFormButton>
 
-          <input
-            className="input"
+          <SearchFormInput
             type="text"
             name="img"
             value={this.state.inputImg}
@@ -35,8 +41,8 @@ export default class Searchbar extends Component {
             autoFocus
             placeholder="Search images and photos"
           />
-        </form>
-      </header>
+        </SearchForm>
+      </Search>
     );
   }
 }
