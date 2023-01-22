@@ -15,6 +15,11 @@ export class App extends Component {
       img,
     });
   };
+  isLoading = loading => {
+    this.setState({
+      loading,
+    });
+  };
 
   render() {
     return (
@@ -27,7 +32,7 @@ export class App extends Component {
         }}
       >
         <Searchbar onSubmit={this.handelFormSubmit} />
-        <ImageGallery searchImg={this.state.img} />
+        <ImageGallery searchImg={this.state.img} isLoading={this.isLoading} />
         <ToastContainer />
       </div>
     );

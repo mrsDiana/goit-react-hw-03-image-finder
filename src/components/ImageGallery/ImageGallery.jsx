@@ -14,35 +14,41 @@ export default class ImageGallery extends Component {
   };
   componentDidUpdate(prevProps, prevState) {
     if (
-      prevState.page !== this.state.page ||
-      prevProps.searchImg !== this.props.searchImg
+      prevProps.searchImg !== this.props.searchImg ||
+      prevState.page !== this.state.page
     ) {
       this.setState({ images: [] });
-      // this.setState({ page: 1 });
       this.setState({ loading: true });
       fetch(
         `https://pixabay.com/api/?q=${this.props.searchImg}&page=${this.state.page}&key=31283318-f84bd36e26b769e2b71141abe&image_type=photo&orientation=horizontal&per_page=12`
       )
         .then(res => res.json())
-        .then(data =>
-          this.setState({
-            images: [...prevState.images, ...data.hits],
-            total: data.total,
-          })
-        )
+        .then(data => {
+          if (data.hits.length === 0) {
+            return toast.info('Input the new name');
+          }
+          if (prevProps.searchImg === this.props.searchImg) {
+            console.log('load more');
+            this.setState({
+              images: [...prevState.images, ...data.hits],
+            });
+          } else {
+            console.log(data.total);
+            this.setState({ page: 1 });
+            this.setState({
+              images: data.hits,
+              total: data.total,
+            });
+          }
+        })
         .finally(() => this.setState({ loading: false }));
-    }
-    if (prevState.images !== this.state.images) {
-      console.log(prevState.images);
-      console.log(this.state.images);
-      this.state.images.length === 0 && toast.info('Input the new name');
     }
   }
 
   loadMoreButton = () => {
     console.log(this.state.page);
     this.setState(prevState => ({
-      page: prevState.page * 2,
+      page: prevState.page + 1,
     }));
   };
   render() {
@@ -61,7 +67,9 @@ export default class ImageGallery extends Component {
                 />
               );
             })}
-            <LoadMore onClick={this.loadMoreButton} />
+            {this.state.images.length + 1 < this.state.total && (
+              <LoadMore onClick={this.loadMoreButton} />
+            )}
           </Gallery>
         )}
       </div>
