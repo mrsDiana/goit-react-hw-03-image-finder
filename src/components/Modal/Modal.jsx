@@ -15,9 +15,12 @@ export class Modal extends Component {
       this.props.onClose();
     }
   };
+  closeClick = e => {
+    if (e.target === e.currentTarget) this.props.onClose();
+  };
   render() {
     return (
-      <Overlay>
+      <Overlay onClick={this.closeClick}>
         <ModalImg>
           <img width="1400" height="900" src={this.props.src} alt="" />
         </ModalImg>
