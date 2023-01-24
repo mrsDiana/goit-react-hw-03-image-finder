@@ -4,6 +4,7 @@ import {
   ImageGalleryItem as ImageGallery,
   ImageGalleryItemImg,
 } from './ImageGallery.styled';
+import PropTypes from 'prop-types';
 
 export class ImageGalleryItem extends Component {
   state = {
@@ -17,23 +18,24 @@ export class ImageGalleryItem extends Component {
   };
 
   onCloseImg = () => {
-    console.log('close');
     this.setState({
       isModalOpen: false,
     });
   };
   render() {
+    const { src, alt, srcModal } = this.props;
     return (
       <ImageGallery>
-        <ImageGalleryItemImg
-          src={this.props.src}
-          alt={this.props.alt}
-          onClick={this.onOpenImg}
-        />
+        <ImageGalleryItemImg src={src} alt={alt} onClick={this.onOpenImg} />
         {this.state.isModalOpen && (
-          <Modal onClose={this.onCloseImg} src={this.props.srcModal} />
+          <Modal onClose={this.onCloseImg} src={srcModal} />
         )}
       </ImageGallery>
     );
   }
 }
+ImageGalleryItem.propTypes = {
+  src: PropTypes.string,
+  alt: PropTypes.string,
+  srcModal: PropTypes.string,
+};

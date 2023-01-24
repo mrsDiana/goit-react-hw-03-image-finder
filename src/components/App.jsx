@@ -7,17 +7,11 @@ import ImageGallery from './ImageGallery/ImageGallery';
 export class App extends Component {
   state = {
     img: '',
-    loading: false,
   };
 
   handelFormSubmit = img => {
     this.setState({
       img,
-    });
-  };
-  isLoading = loading => {
-    this.setState({
-      loading,
     });
   };
 
@@ -32,7 +26,7 @@ export class App extends Component {
         }}
       >
         <Searchbar onSubmit={this.handelFormSubmit} />
-        <ImageGallery searchImg={this.state.img} isLoading={this.isLoading} />
+        <ImageGallery searchImg={this.state.img} />
         <ToastContainer />
       </div>
     );

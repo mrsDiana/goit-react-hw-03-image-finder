@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import { ImSearch } from 'react-icons/im';
+import PropTypes from 'prop-types';
+
 import {
   Searchbar as Search,
   SearchForm,
   SearchFormButton,
-  SearchFormButtonLabel,
   SearchFormInput,
 } from './Searchbar.styled';
 
@@ -17,11 +19,12 @@ export default class Searchbar extends Component {
     this.setState({ inputImg: event.currentTarget.value.toLowerCase() });
   };
   handelSubmit = event => {
+    const { inputImg } = this.state;
     event.preventDefault();
-    if (this.state.inputImg.trim() === '') {
+    if (inputImg.trim() === '') {
       return toast.error('Input the name');
     }
-    this.props.onSubmit(this.state.inputImg);
+    this.props.onSubmit(inputImg);
     this.setState({ inputImg: '' });
   };
   render() {
@@ -29,7 +32,7 @@ export default class Searchbar extends Component {
       <Search>
         <SearchForm onSubmit={this.handelSubmit}>
           <SearchFormButton type="submit">
-            <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+            <ImSearch />
           </SearchFormButton>
 
           <SearchFormInput
@@ -46,3 +49,7 @@ export default class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func,
+};

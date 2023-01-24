@@ -1,11 +1,17 @@
 import { Component } from 'react';
+import { Button } from './Button.styled';
+import PropTypes from 'prop-types';
 
 export class LoadMore extends Component {
   render() {
     return (
-      <button type="button" onClick={this.props.onClick}>
+      <Button type="button" onClick={this.props.onClick}>
         Load more
-      </button>
+      </Button>
     );
   }
 }
+
+LoadMore.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
