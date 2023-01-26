@@ -3,12 +3,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
-import { Loader } from 'components/Loader/Loader';
 
 export class App extends Component {
   state = {
     img: '',
-    isLoading: false,
     isSubmit: false,
   };
 
@@ -16,12 +14,6 @@ export class App extends Component {
     this.setState({
       img,
       isSubmit: true,
-    });
-  };
-
-  isLoading = value => {
-    this.setState({
-      isLoading: value,
     });
   };
 
@@ -42,15 +34,12 @@ export class App extends Component {
         }}
       >
         <Searchbar onSubmit={this.handelFormSubmit} />
-        {this.state.isLoading && <Loader />}
-
         <ImageGallery
           searchImg={this.state.img}
           isLoading={this.isLoading}
           isSubmit={this.state.isSubmit}
           changeSubmit={this.changeSubmit}
         />
-
         <ToastContainer />
       </div>
     );
