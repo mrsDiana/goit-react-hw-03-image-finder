@@ -17,7 +17,10 @@ export default class ImageGallery extends Component {
     if (prevProps.searchImg !== this.props.searchImg && this.state.page === 1) {
       this.fetchImg(prevProps.searchImg);
     }
-    if (prevState.page !== this.state.page) {
+    if (
+      prevState.page !== this.state.page &&
+      prevProps.searchImg === this.props.searchImg
+    ) {
       this.fetchImg(prevProps.searchImg);
     }
   }
