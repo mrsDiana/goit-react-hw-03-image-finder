@@ -27,6 +27,7 @@ export default class Searchbar extends Component {
     this.props.onSubmit(inputImg);
     this.setState({ inputImg: '' });
   };
+
   render() {
     return (
       <Search>
