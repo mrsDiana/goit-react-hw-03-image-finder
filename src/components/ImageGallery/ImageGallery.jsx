@@ -33,7 +33,12 @@ export default class ImageGallery extends Component {
   render() {
     const { images } = this.state;
     return (
-      <div>
+      <div
+        style={{
+          display: 'grid',
+          justifyItems: 'center',
+        }}
+      >
         {images.length > 0 && (
           <Gallery>
             {images.map(image => {
@@ -47,10 +52,10 @@ export default class ImageGallery extends Component {
                 />
               );
             })}
-            {images.length >= this.props.page * 12 && (
-              <LoadMore onClick={this.props.pageIncrise} />
-            )}
           </Gallery>
+        )}
+        {images.length >= this.props.page * 12 && (
+          <LoadMore onClick={this.props.pageIncrise} />
         )}
       </div>
     );
