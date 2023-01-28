@@ -4,14 +4,15 @@ export const Loader = () => {
   return (
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'center',
+        position: 'absolute',
+        top: '40%',
+        left: '40%',
       }}
     >
       <MagnifyingGlass
         visible={true}
-        height="200"
-        width="200"
+        height="400"
+        width="400"
         ariaLabel="MagnifyingGlass-loading"
         wrapperStyle={{}}
         wrapperClass="MagnifyingGlass-wrapper"
